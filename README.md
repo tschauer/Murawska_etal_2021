@@ -4,7 +4,7 @@ This repository contains analysis code for the manuscript ... by Murawska et al.
 
 ## Design
 
-ChIP-seq experiments in wild type and ... mutant fission yeast.
+ChIP-seq experiments in wild type and pob3 mutant fission yeast.
 
 ## Links
 
