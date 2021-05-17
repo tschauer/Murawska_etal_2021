@@ -1,0 +1,69 @@
+# HOMER Peaks
+# Peak finding parameters:
+# tag directory = H3K9me2_wt_1.dir/
+#
+# total peaks = 30
+# peak size = 500
+# peaks found using tags on both strands
+# minimum distance between peaks = 1000
+# fragment length = 156
+# genome size = 12631355
+# Total tags = 6929915.0
+# Total tags in peaks = 1960812.0
+# Approximate IP efficiency = 28.29%
+# tags per bp = 0.548621
+# expected tags per peak = 274.311
+# maximum tags considered per bp = 54.0
+# effective number of tags used for normalization = 10000000.0
+# Individual peaks have been stitched together into variable length regions
+# Poisson p-value threshold = 1.000000e-03
+# Poisson tag threshold = 328.0
+# number of putative peaks = 2361
+#
+# input tag directory = IN_wt_1.dir/
+# Fold over input required = 2.00
+# Poisson p-value over input required = 1.00e-04
+# Putative peaks filtered by input = 1
+#
+# size of region used for local filtering = 10000
+# Fold over local region required = 4.00
+# Poisson p-value over local region required = 1.00e-04
+# Putative peaks filtered by local signal = 0
+#
+# Maximum fold under expected unique positions for tags = 2.00
+# Putative peaks filtered for being too clonal = 0
+#
+# cmd = findPeaks H3K9me2_wt_1.dir/ -i IN_wt_1.dir/ -style histone -F 2 -o H3K9me2_wt_1.histone.F2.txt
+#
+# Column Headers:
+#PeakID	chr	start	end	strand	Normalized Tag Count	region size	findPeaks Score	Total Tags (normalized to Control Experiment)	Control Tags	Fold Change vs Control	p-value vs Control	Clonal Fold Change
+III	1106152	1142352	III-694	1	+
+III	1068975	1092856	III-699	1	+
+I	5529712	5579133	I-738	1	+
+II	1602085	1618651	II-368	1	+
+II	4513457	4536170	II-535	1	+
+II	1629724	1644220	II-562	1	+
+I	74	22006	I-204	1	+
+I	3776759	3790912	I-742	1	+
+I	3752176	3765505	I-739	1	+
+III	5889	9224	III-58	1	+
+III	16759	19686	III-56	1	+
+III	2448192	2449665	III-23	1	+
+III	14462	15915	III-40	1	+
+III	3596	5046	III-42	1	+
+III	21289	23092	III-22	1	+
+III	2446405	2447473	III-54	1	+
+III	10427	11678	III-20	1	+
+III	2441707	2442835	III-154	1	+
+III	0	1271	III-165	1	+
+II	4496990	4507680	II-598	1	+
+II	5091	15998	II-634	1	+
+MTR	9164	13497	MTR-22	1	+
+I	28429	35649	I-734	1	+
+II	2129596	2136780	II-611	1	+
+MTR	15547	19886	MTR-28	1	+
+MTR	355	3356	MTR-57	1	+
+II	76125	77583	II-661	1	+
+I	59544	60550	I-741	1	+
+II	2113966	2115242	II-666	1	+
+II	2338950	2339451	II-609	1	+

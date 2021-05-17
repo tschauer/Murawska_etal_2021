@@ -1,0 +1,67 @@
+# HOMER Peaks
+# Peak finding parameters:
+# tag directory = H3K9me2_wt_2.dir/
+#
+# total peaks = 28
+# peak size = 500
+# peaks found using tags on both strands
+# minimum distance between peaks = 1000
+# fragment length = 148
+# genome size = 12631372
+# Total tags = 6359418.0
+# Total tags in peaks = 2774760.0
+# Approximate IP efficiency = 43.63%
+# tags per bp = 0.503299
+# expected tags per peak = 251.650
+# maximum tags considered per bp = 50.0
+# effective number of tags used for normalization = 10000000.0
+# Individual peaks have been stitched together into variable length regions
+# Poisson p-value threshold = 1.000000e-03
+# Poisson tag threshold = 303.0
+# number of putative peaks = 2403
+#
+# input tag directory = IN_wt_2.dir/
+# Fold over input required = 2.00
+# Poisson p-value over input required = 1.00e-04
+# Putative peaks filtered by input = 2
+#
+# size of region used for local filtering = 10000
+# Fold over local region required = 4.00
+# Poisson p-value over local region required = 1.00e-04
+# Putative peaks filtered by local signal = 0
+#
+# Maximum fold under expected unique positions for tags = 2.00
+# Putative peaks filtered for being too clonal = 0
+#
+# cmd = findPeaks H3K9me2_wt_2.dir/ -i IN_wt_2.dir/ -style histone -F 2 -o H3K9me2_wt_2.histone.F2.txt
+#
+# Column Headers:
+#PeakID	chr	start	end	strand	Normalized Tag Count	region size	findPeaks Score	Total Tags (normalized to Control Experiment)	Control Tags	Fold Change vs Control	p-value vs Control	Clonal Fold Change
+III-692	III	1106148	1142357	+	809031.6	36209.000	582.000000	481530.3	23456.0	20.53	0.00e+00	0.50
+III-691	III	1068956	1092843	+	569718.8	23887.000	599.000000	339092.9	16848.0	20.13	0.00e+00	0.49
+I-759	I	5529188	5579133	+	506554.2	49945.000	370.000000	301497.8	20497.0	14.71	0.00e+00	0.50
+II-420	II	1602108	1618648	+	384874.8	16540.000	1280.000000	229075.0	12238.0	18.72	0.00e+00	0.47
+II-603	II	4513240	4539804	+	307915.0	26564.000	561.000000	183269.0	23321.0	7.86	0.00e+00	0.50
+II-620	II	1629724	1644116	+	302944.4	14392.000	494.000000	180310.5	9611.0	18.76	0.00e+00	0.50
+I-257	I	80	22878	+	273576.9	22798.000	4556.000000	162831.2	13100.0	12.43	0.00e+00	0.50
+I-747	I	3776742	3791029	+	254301.6	14287.000	449.000000	151358.6	8720.0	17.36	0.00e+00	0.50
+I-751	I	3752107	3765648	+	229863.8	13541.000	400.000000	136813.4	8105.0	16.88	0.00e+00	0.50
+III-65	III	2446521	2449909	+	163801.2	3388.000	11280.000000	97493.4	40009.0	2.44	0.00e+00	0.48
+III-39	III	14220	17657	+	136394.5	3437.000	13294.000000	81181.2	34138.0	2.38	0.00e+00	0.45
+III-41	III	3356	6815	+	136207.4	3459.000	13047.000000	81069.8	33924.0	2.39	0.00e+00	0.45
+II-663	II	5029	16003	+	39033.4	10974.000	361.000000	23232.5	4481.0	5.18	0.00e+00	0.57
+MTR-23	MTR	9160	13502	+	38509.8	4342.000	1223.000000	22920.8	1024.0	22.38	0.00e+00	1.00
+II-611	II	4497004	4507816	+	38390.3	10812.000	518.000000	22849.7	4457.0	5.13	0.00e+00	0.56
+III-325	III	2441810	2442813	+	31784.4	1003.000	8459.000000	18917.8	9144.0	2.07	0.00e+00	0.50
+III-48	III	10439	11439	+	31234.0	1000.000	11881.000000	18590.3	8845.0	2.10	0.00e+00	0.50
+III-52	III	21296	22171	+	28337.5	875.000	11695.000000	16866.3	7934.0	2.13	0.00e+00	0.50
+I-772	I	28241	35790	+	21305.4	7549.000	318.000000	12680.8	2997.0	4.23	0.00e+00	0.57
+II-638	II	2129454	2136867	+	16083.2	7413.000	456.000000	9572.6	1796.0	5.33	0.00e+00	0.52
+III-406	III	1	618	+	13721.4	617.000	7647.000000	8166.9	4024.0	2.03	0.00e+00	0.53
+MTR-32	MTR	15522	19903	+	9021.3	4381.000	803.000000	5369.4	1100.0	4.88	0.00e+00	0.53
+MTR-70	MTR	247	3499	+	6588.7	3252.000	477.000000	3921.5	665.0	5.90	0.00e+00	0.52
+II-687	II	76119	77546	+	5231.6	1427.000	322.000000	3113.8	587.0	5.30	0.00e+00	0.55
+I-753	I	59533	60535	+	3302.2	1002.000	395.000000	1965.4	391.0	5.03	0.00e+00	0.68
+II-670	II	2113942	2115452	+	2846.2	1510.000	347.000000	1694.0	411.0	4.12	0.00e+00	0.51
+II-686	II	1473631	1474763	+	1487.6	1132.000	322.000000	885.4	396.0	2.24	4.67e-99	0.56
+II-628	II	2338827	2339577	+	1168.3	750.000	478.000000	695.4	336.0	2.07	1.01e-65	0.55
