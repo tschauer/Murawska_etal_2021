@@ -22,15 +22,27 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 ########################################################     libraries    ######################################################## 
 
 
-
-library(rtracklayer)
 library(GenomicFeatures)
+library(AnnotationDbi)
+library(RColorBrewer)
+library(DESeq2)
+library(affy)
+library(pheatmap)
+library(scales)
+library(genefilter)
+library(ggplot2)
+library(sva)
+library(GenomicFeatures)
+library(rtracklayer)
+library(grid)
+library(gridExtra)
+library(dplyr)
+library(LSD)
+library(tiff)
+library(png)
+library(gdata)
+library(vioplot)
 library(matrixStats)
-library(tsTools)
-library(BiocParallel)
-library(GenomicAlignments)
-library(csaw)
-library(edgeR)
 
 
 source("functions.R")
@@ -68,8 +80,8 @@ my_chromInfo <- read.table("/Volumes/PromisePegasus/Projects/Magdalena/genome/Sc
 
 
 
-peaks.H3K9me2_wt_1 <- import("../homer//H3K9me2_wt_1.histone.F2.bed")
-peaks.H3K9me2_wt_2 <- import("../homer//H3K9me2_wt_2.histone.F2.bed")
+peaks.H3K9me2_wt_1 <- import("../Homer_reps_Multi/H3K9me2_wt_1.histone.F2.bed")
+peaks.H3K9me2_wt_2 <- import("../Homer_reps_Multi/H3K9me2_wt_2.histone.F2.bed")
 
 peaks.H3K9me2_wt <- intersect(peaks.H3K9me2_wt_1, peaks.H3K9me2_wt_2)
 
@@ -170,12 +182,12 @@ my_colors[10] <- "#555555"
 
 
 
-my_ylims <- list(c(0,7),
-                 c(2,7),
-                 c(3,10),
-                 c(3,8),
-                 c(0,10),
-                 c(2,8))
+my_ylims <- list(c(-4,3),
+                 c(-2,2),
+                 c(-1,6),
+                 c(-2,2),
+                 c(-4,6),
+                 c(-2,4))
 
 i=3
 
@@ -232,7 +244,7 @@ for(i in seq_along(my_data_ses)){
         
 }
 
-mtext("ChIP Enrichment", side = 2, line = 1, at = 0.5, adj = 0.5,  cex = 1.2, font = 1, outer = TRUE)
+mtext("log2(ChIP/Input)", side = 2, line = 1, at = 0.5, adj = 0.5,  cex = 1.2, font = 1, outer = TRUE)
 
 par(fig=c(0,1,0,1), oma = c(0,0,0,0), mar = c(1,0,0,0), new = TRUE)
 
@@ -307,7 +319,7 @@ for(i in seq_along(my_data_ses)){
         rm(list = "data.chip")
         
         if(i == 1){
-                mtext("ChIP Enrichment", side = 2, line = 2.5,  adj = 0.5,  cex = 1.2, font = 1)
+                mtext("log2(ChIP/Input)", side = 2, line = 2.5,  adj = 0.5,  cex = 1.2, font = 1)
                 
         }
         
@@ -380,7 +392,7 @@ for(i in seq_along(my_data_ses)){
         rm(list = "data.chip")
         
         if(i == 1){
-                mtext("ChIP Enrichment", side = 2, line = 2.5,  adj = 0.5,  cex = 1.2, font = 1)
+                mtext("log2(ChIP/Input)", side = 2, line = 2.5,  adj = 0.5,  cex = 1.2, font = 1)
                 
         }
         
@@ -415,12 +427,12 @@ dev.off()
 
 
 
-my_ylims <- list(c(0,6),
-                 c(3.5,5.5),
-                 c(3,12),
-                 c(3,6),
-                 c(1,5),
-                 c(3,4.5))
+my_ylims <- list(c(-4,1),
+                 c(-1,1),
+                 c(-1,7),
+                 c(-2,2),
+                 c(-3,1),
+                 c(-1,0.5))
 
 
 
@@ -490,7 +502,7 @@ for(i in seq_along(my_data_ses)){
              labels = paste0("<",ceiling(pvals*100)/100))
         
         if(i == 1){
-                mtext("Median ChIP Enrichment", side = 2, line = 2.5, cex = 1.2, font = 1)
+                mtext("Median log2(ChIP/Input)", side = 2, line = 2.5, cex = 1.2, font = 1)
                 
         }
         

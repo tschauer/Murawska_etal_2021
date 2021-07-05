@@ -24,15 +24,26 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 ########################################################  libraries ######################################################## 
 
 
-
 library(rtracklayer)
 library(GenomicFeatures)
+library(RColorBrewer)
 library(matrixStats)
+library(topGO)
+library(grid)
+library(gridBase)
+library(gridExtra)
 library(tsTools)
 library(BiocParallel)
 library(GenomicAlignments)
+library(LSD)
+library(csaw)
+library(pheatmap)
+library(Vennerable)
 library(csaw)
 library(edgeR)
+
+
+
 
 
 
@@ -51,7 +62,7 @@ library(edgeR)
 system("mkdir data")
 
 
-my_dir <- "../BAM/"
+my_dir <- "../BAM_Multi/"
 
 bam_path <- list.files(path = my_dir, pattern = "_pob3.*.bam$|_wt.*.bam$", full.names = TRUE)    
 

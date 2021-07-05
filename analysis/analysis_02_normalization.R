@@ -26,12 +26,24 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 library(rtracklayer)
 library(GenomicFeatures)
+library(RColorBrewer)
 library(matrixStats)
+library(topGO)
+library(grid)
+library(gridBase)
+library(gridExtra)
 library(tsTools)
 library(BiocParallel)
 library(GenomicAlignments)
+library(LSD)
+library(csaw)
+library(pheatmap)
+library(Vennerable)
 library(csaw)
 library(edgeR)
+
+
+
 
 
 
@@ -77,7 +89,7 @@ if(identical(gsub("data.","", my_data_ses),gsub("bin.","", my_bin_ses))){
                 bin.chip <-  get(my_bin_ses[i])
                 
                 
-                if(identical(colnames(data.chip), colnames(bin.chip))){
+                if(identical(colData(data.chip)$bam.files, colData(bin.chip)$bam.files)){
                         
                         
                         data.chip$norm.factors <- normFactors(bin.chip, se.out = FALSE)
@@ -90,11 +102,6 @@ if(identical(gsub("data.","", my_data_ses),gsub("bin.","", my_bin_ses))){
                         my_IN_idx <- colData(data.chip)$chip == "IN"
                         my_IP_idx <- colData(data.chip)$chip != "IN"
                         
-                        my_IN_assay <- assays(data.chip[,my_IN_idx])$adjc
-                        my_IN_means <- colMeans(my_IN_assay)
-                        
-                        assays(data.chip)$scac[,my_IN_idx] <- t(t(my_IN_assay) - my_IN_means)
-                        
                         
                         if(all(identical(colData(data.chip)$genotype[my_IP_idx], 
                                          colData(data.chip)$genotype[my_IN_idx]),
@@ -106,7 +113,6 @@ if(identical(gsub("data.","", my_data_ses),gsub("bin.","", my_bin_ses))){
                                 
                                 assays(data.chip)$norm[,my_IP_idx] <- assays(data.chip)$scac[,my_IP_idx] - assays(data.chip)$scac[,my_IN_idx]
                                 assays(data.chip)$norm[,my_IN_idx] <- assays(data.chip)$scac[,my_IN_idx] - assays(data.chip)$scac[,my_IN_idx]
-                                
                                 
                         }
                         
@@ -139,10 +145,10 @@ pdf(file = paste0("plots/density_plots.pdf"), width = 10, height = 6)
 par(mfrow=c(2,4))
 
 
-for(i in seq_along(my_data_ses)){
+for(j in seq_along(my_data_ses)){
 
         
-        data.chip <- get(my_data_ses[i])
+        data.chip <- get(my_data_ses[j])
         
         for(i in 1:ncol(assays(data.chip)$adjc)){
                 
@@ -150,15 +156,15 @@ for(i in seq_along(my_data_ses)){
                      main = colData(data.chip)$bam.files[i], xlab = "log2 norm counts")
         }
         
-        for(i in 1:ncol(assays(data.chip)$scac)){
-                
-                plot(density(assays(data.chip)$scac[,i], from = -2, to = 10),
-                     main = colData(data.chip)$bam.files[i], xlab = "log2 norm counts")
-        }
+        # for(i in 1:ncol(assays(data.chip)$scac)){
+        #         
+        #         plot(density(assays(data.chip)$scac[,i], from = -2, to = 10),
+        #              main = colData(data.chip)$bam.files[i], xlab = "log2 norm counts")
+        # }
         
         for(i in 1:ncol(assays(data.chip)$norm)){
                 
-                plot(density(assays(data.chip)$norm[,i], from = -2, to = 10),
+                plot(density(assays(data.chip)$norm[,i], from = -6, to = 6),
                      main = colData(data.chip)$bam.files[i], xlab = "log2 norm counts")
         }
         
@@ -178,14 +184,14 @@ dev.off()
 
 system("mkdir coverage_chip")
 
-
+j=1
 i=1
 
 
-for(i in seq_along(my_data_ses)){
+for(j in seq_along(my_data_ses)){
         
         
-        data.chip <- get(my_data_ses[i])
+        data.chip <- get(my_data_ses[j])
         
         gr <- rowRanges(data.chip)
         

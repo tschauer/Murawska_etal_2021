@@ -21,15 +21,27 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 ########################################################     libraries    ######################################################## 
 
 
-library(rtracklayer)
 library(GenomicFeatures)
+library(AnnotationDbi)
+library(RColorBrewer)
+library(DESeq2)
+library(affy)
+library(pheatmap)
+library(scales)
+library(genefilter)
+library(ggplot2)
+library(sva)
+library(GenomicFeatures)
+library(rtracklayer)
+library(grid)
+library(gridExtra)
+library(dplyr)
+library(LSD)
+library(tiff)
+library(png)
+library(gdata)
+library(vioplot)
 library(matrixStats)
-library(tsTools)
-library(BiocParallel)
-library(GenomicAlignments)
-library(csaw)
-library(edgeR)
-
 
 
 source("functions.R")
@@ -43,10 +55,10 @@ source("functions.R")
 
 
 
-my_chromInfo <- read.table("../genome/Schizosaccharomyces_pombe.ASM294v2.chromInfo.txt")
+my_chromInfo <- read.table("/Volumes/PromisePegasus/Projects/Magdalena/genome/Schizosaccharomyces_pombe.ASM294v2.chromInfo.txt")
 
 
-gtf <- rtracklayer::import("../genome/Schizosaccharomyces_pombe.ASM294v2.37.gtf")
+gtf <- rtracklayer::import("/Volumes/PromisePegasus/Projects/Magdalena/genome/Schizosaccharomyces_pombe.ASM294v2.37.gtf")
 
 
 my_genes <- gtf[gtf$type == "gene"]
@@ -132,6 +144,16 @@ my_covs <- ls(pattern = "coverage\\.")
 ##################################################################################################################################
 ##################################################################################################################################
 
+
+
+
+
+
+
+
+
+
+
 ##################################################################################################################################
 ##################################################################################################################################
 
@@ -186,8 +208,9 @@ for(sami in seq_along(my_covs_rep)){
 
 
 
-peaks.H3K9me2_wt_1 <- import("../homer//H3K9me2_wt_1.histone.F2.bed")
-peaks.H3K9me2_wt_2 <- import("../homer//H3K9me2_wt_2.histone.F2.bed")
+
+peaks.H3K9me2_wt_1 <- import("../Homer_reps_Multi/H3K9me2_wt_1.histone.F2.bed")
+peaks.H3K9me2_wt_2 <- import("../Homer_reps_Multi/H3K9me2_wt_2.histone.F2.bed")
 
 peaks.H3K9me2_wt <- intersect(peaks.H3K9me2_wt_1, peaks.H3K9me2_wt_2)
 
@@ -258,12 +281,12 @@ sami=5
 repi = 1
 ordi = 1
 
-my_ylims <- list(c(0,8),
-                 c(1,7),
-                 c(3,11),
-                 c(3,7),
-                 c(0,8),
-                 c(2.75,7))
+my_ylims <- list(c(-4,3),
+                 c(-3,2),
+                 c(-1,7),
+                 c(-1,3),
+                 c(-4,4),
+                 c(-1,3))
 
 my_covs <- ls(pattern = "coverage\\.")
 
@@ -382,7 +405,7 @@ for(repi in 1:3){
                 }
                 
                 mtext(c("chrI","chrII", "chrIII"), side = 1, las=1, line = -2.5, at = c(0.200,0.500,0.800),  cex = 1.2, font = 1, outer = TRUE)
-                mtext("ChIP Enrichment", side = 2, line = -0.5, at = 0.5, adj = 0.475,  cex = 1.2, font = 1, outer = TRUE)
+                mtext("log2(ChIP/Input)", side = 2, line = -0.5, at = 0.5, adj = 0.475,  cex = 1.2, font = 1, outer = TRUE)
                 
                 if(repi == 3){
                         mtext("average", side = 3, las=1, line = 0, at = 0.5,  cex = 1.2, font = 1, outer = TRUE)
@@ -459,6 +482,7 @@ my_regions <- list(
         chrIII_TELR = c("III", 2352000, 2454000),
         chrIII_rRNA_L  = c("III", 0,27000),
         chrIII_rRNA_R  = c("III",2432000,2453000),
+        mat = c("II", 2100000, 2160000),
         mcp7 = c("I", 576000, 583000),
         mei4 = c("II", 1471000, 1478000)
 )
@@ -478,12 +502,6 @@ repi = 1
 ordi = 1
 
 
-my_ylims <- list(c(0,8),
-                 c(0,8),
-                 c(3,11),
-                 c(2,8),
-                 c(0,8),
-                 c(2,8))
 
 
 for(repi in 1:3){
@@ -593,7 +611,7 @@ for(repi in 1:3){
                                 
                                 if(grepl("TEL|CEN", names(my_regions[regi]))){
                                         my_xticks <- 2e4
-                                } else if(grepl("rRNA", names(my_regions[regi]))){
+                                } else if(grepl("rRNA|mat", names(my_regions[regi]))){
                                         my_xticks <- 5e3
                                 } else {
                                         my_xticks <- 2e3
@@ -627,7 +645,7 @@ for(repi in 1:3){
                                         mtext(paste("replicate #", repi), side = 3, las=1, line = 0, at = 0.5,  cex = 1.2, font = 1, outer = TRUE)
                                 }
                                 
-                                mtext("ChIP Enrichment", side = 2, line = 0, at = 0.5, adj = 0.475,  cex = 1.5, font = 1, outer = TRUE)
+                                mtext("log2(ChIP/Input)", side = 2, line = 0, at = 0.5, adj = 0.475,  cex = 1.5, font = 1, outer = TRUE)
                                 
                         }
                 }
