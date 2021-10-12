@@ -1,3 +1,5 @@
+https://zenodo.org/badge/DOI/10.5281/zenodo.5564796.svg
+
 ## Summary
 
 This repository contains analysis code for the manuscript "The histone chaperone FACT facilitates heterochromatin spreading through regulation of histone turnover and H3K9 methylation states" by Murawska et al. 2021
